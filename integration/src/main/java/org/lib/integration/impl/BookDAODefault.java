@@ -19,14 +19,16 @@ import org.lib.model.BookId;
  */
 public class BookDAODefault implements BookDAO {
 
-    Map<BookId, Book> books = new HashMap<>();
-    static int counter;
+    private Map<BookId, Book> books = new HashMap<>();
+    private static int counter;
 
+    @Override
     public void create(Book book) {
         BookId bookId = new BookId(++counter);
         books.put(bookId, new Book(bookId, book.getTitle(), book.getTitle()));
     }
 
+    @Override
     public Collection<Book> all() {
         return new ArrayList<>(books.values());
     }

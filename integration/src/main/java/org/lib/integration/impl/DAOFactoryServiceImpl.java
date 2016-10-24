@@ -10,12 +10,17 @@ import org.lib.integration.DAOFactoryService;
 
 public class DAOFactoryServiceImpl extends DAOFactoryService {
 
+    private BookDAO bookDAO;
+
     public DAOFactoryServiceImpl() {
     }
 
     @Override
     public BookDAO getBookDAO() {
-        return new BookDAODefault();
+        if (bookDAO == null) {
+            bookDAO = new BookDAODefault();
+        }
+        return bookDAO;
     }
 
 }

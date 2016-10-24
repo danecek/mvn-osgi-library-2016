@@ -14,3 +14,9 @@ hs_err_pid*
 /utils/target/
 /integration/target/
 /integration/nbproject/
+/ArraySet/nbproject/private/
+/ArraySet/dist/
+/ArraySet/build/
+/business/nbproject/
+/business/target/
+/richclient/target/

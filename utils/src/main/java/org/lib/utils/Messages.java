@@ -5,7 +5,6 @@
  */
 package org.lib.utils;
 
-import com.sun.org.apache.xerces.internal.util.MessageFormatter;
 import java.text.MessageFormat;
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;

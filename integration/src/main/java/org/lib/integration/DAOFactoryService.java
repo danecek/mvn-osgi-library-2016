@@ -7,13 +7,21 @@ package org.lib.integration;
 
 import org.lib.integration.impl.DAOFactoryServiceImpl;
 
-
 public abstract class DAOFactoryService {
 
-    public static DAOFactoryService inst() {
-        return new DAOFactoryServiceImpl();
+    private static DAOFactoryService service;
+
+    public static DAOFactoryService service() {
+        // todo
+        if (service == null) {
+            service = new DAOFactoryServiceImpl();
+        }
+        return service;
     }
 
     public abstract BookDAO getBookDAO();
+//    public  UserDAO getUserDAO() {
+//        return null;
+//    }
 
 }
