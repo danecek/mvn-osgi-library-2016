@@ -7,18 +7,13 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>model</artifactId>
+    <artifactId>utils</artifactId>
     <packaging>bundle</packaging>
 
     <dependencies>
         <dependency>
             <groupId>org.osgi</groupId>
             <artifactId>org.osgi.core</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>utils</artifactId>
-            <version>${project.version}</version>
         </dependency>
     </dependencies>
 
@@ -30,9 +25,9 @@
                 <extensions>true</extensions>
                 <configuration>
                     <instructions>
-                        <Bundle-Activator>org.lib.model.Activator</Bundle-Activator>
-                        <Export-Package >org.lib.model</Export-Package>
-                        <Private-Package>org.lib.model.*</Private-Package>
+                        <Bundle-Activator>org.lib.utils.Activator</Bundle-Activator>
+                        <Export-Package >org.lib.utils</Export-Package>
+                        <Private-Package>org.lib.utils.*</Private-Package>
                     </instructions>
                 </configuration>
             </plugin>

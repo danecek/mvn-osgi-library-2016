@@ -5,41 +5,46 @@
  */
 package org.lib.model;
 
+import java.io.Serializable;
+
 /**
  *
  * @author danecek
  */
-public class AbstrId<T extends AbstrId> implements Comparable<T> {
+public class AbstrId<T extends AbstrId> implements Comparable<T>, Serializable {
 
-    private final Integer id;
+    private final int id;
+
+    public AbstrId(int id) {
+        this.id = id;
+    }
 
     public int compareTo(T o) {
-        return getId() - o.getId();
+        return id - o.getId();
     }
 
     @Override
     public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
         if (getClass() != obj.getClass()) {
             return false;
         }
         return compareTo((T) obj) == 0;
     }
 
-    public AbstrId(Integer id) {
-        this.id = id;
-    }
-
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 59 * hash + (this.getId() != null ? this.getId().hashCode() : 0);
+        int hash = 7;
+        hash = 59 * hash + this.id;
         return hash;
     }
 
     /**
      * @return the id
      */
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
