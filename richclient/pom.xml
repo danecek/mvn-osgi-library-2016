@@ -34,5 +34,5 @@
             </plugin>
         </plugins>
     </build>
-
+    <name>richclient 2016</name>
 </project>

@@ -71,6 +71,5 @@
             </plugin>
         </plugins>
     </reporting>
-
-
+    <name>business 2016</name>
 </project>
