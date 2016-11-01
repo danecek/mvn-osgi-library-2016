@@ -9,6 +9,8 @@ import java.util.Collection;
 import org.lib.model.Book;
 
 public interface BookDAO {
+
     public void create(Book book);
+
     Collection<Book> all();
 }

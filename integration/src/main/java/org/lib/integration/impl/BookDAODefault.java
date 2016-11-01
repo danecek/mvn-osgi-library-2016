@@ -13,19 +13,20 @@ import org.lib.integration.BookDAO;
 import org.lib.model.Book;
 import org.lib.model.BookId;
 
-/**
- *
- * @author danecek
- */
-public class BookDAODefault implements BookDAO {
 
-    private Map<BookId, Book> books = new HashMap<>();
+public final class BookDAODefault implements BookDAO {
+
+    private final Map<BookId, Book> books = new HashMap<>();
     private static int counter;
+
+    public BookDAODefault() {
+        create(new Book("RUR", "Capek"));                
+    }
 
     @Override
     public void create(Book book) {
         BookId bookId = new BookId(++counter);
-        books.put(bookId, new Book(bookId, book.getTitle(), book.getTitle()));
+        books.put(bookId, new Book(bookId, book.getTitle(), book.getAuthor()));
     }
 
     @Override

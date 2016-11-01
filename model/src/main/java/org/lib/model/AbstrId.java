@@ -48,4 +48,9 @@ public class AbstrId<T extends AbstrId> implements Comparable<T>, Serializable {
         return id;
     }
 
+    @Override
+    public String toString() {
+        return Integer.toString(id);
+    }
+
 }
