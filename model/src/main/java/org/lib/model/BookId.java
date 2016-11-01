@@ -9,9 +9,9 @@ package org.lib.model;
  *
  * @author danecek
  */
-public class BookId extends AbstrId<BookId>{
+public class BookId extends AbstrId<BookId> {
     
-    public BookId(int id) {
+    public BookId(Integer id) {
         super(id);
     }
     
