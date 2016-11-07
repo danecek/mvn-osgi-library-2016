@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package org.lib.richclient;
+package org.lib.richclient.controller;
 
+import org.lib.richclient.view.MainWindow;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.MenuItem;
@@ -27,15 +28,5 @@ public class ExitAction extends LibAbstractAction {
         MainWindow.stop();
     }
 
-    public MenuItem createItem() {
-        MenuItem mi = new MenuItem(name);
-        mi.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                execute();
-            }
-        });
-        return mi;
-    }
 
 }

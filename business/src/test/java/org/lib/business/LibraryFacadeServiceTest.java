@@ -8,7 +8,7 @@ package org.lib.business;
 import java.util.Collection;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import org.lib.model.Book;
+import org.lib.model.MyBook;
 
 /**
  *

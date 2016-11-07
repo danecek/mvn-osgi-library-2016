@@ -1,5 +1,6 @@
 package org.lib.richclient;
 
+import org.lib.richclient.view.MainWindow;
 import java.util.logging.Logger;
 import javafx.application.Platform;
 import javafx.embed.swing.JFXPanel;

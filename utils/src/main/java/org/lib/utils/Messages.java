@@ -8,7 +8,6 @@ package org.lib.utils;
 import java.text.MessageFormat;
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
@@ -18,7 +17,7 @@ import java.util.logging.Logger;
 public enum Messages {
 
     Library,
-    Books, Id, Title, Author, Exit, File;
+    Books, Id, Title, Author, Exit, File, Empty_author, Empty_title, Create_book;
 
     private static final Logger LOG = Logger.getLogger(Messages.class.getName());
     private static final ResourceBundle rb = ResourceBundle.getBundle("org.lib.utils.Messages");
@@ -29,7 +28,7 @@ public enum Messages {
             return MessageFormat.format(m, args);
         } catch (MissingResourceException ex) {
          //   LOG.log(Level.SEVERE, "missing resource", ex);
-            return name();
+            return name().replace('_', ' ');
         }
     }
 

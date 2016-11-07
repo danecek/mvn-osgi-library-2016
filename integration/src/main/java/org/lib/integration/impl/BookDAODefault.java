@@ -10,27 +10,27 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import org.lib.integration.BookDAO;
-import org.lib.model.Book;
+import org.lib.model.MyBook;
 import org.lib.model.BookId;
 
 
 public final class BookDAODefault implements BookDAO {
 
-    private final Map<BookId, Book> books = new HashMap<>();
+    private final Map<BookId, MyBook> books = new HashMap<>();
     private static int counter;
 
     public BookDAODefault() {
-        create(new Book("RUR", "Capek"));                
+        create(new MyBook("RUR", "Capek"));                
     }
 
     @Override
-    public void create(Book book) {
+    public void create(MyBook book) {
         BookId bookId = new BookId(++counter);
-        books.put(bookId, new Book(bookId, book.getTitle(), book.getAuthor()));
+        books.put(bookId, new MyBook(bookId, book.getTitle(), book.getAuthor()));
     }
 
     @Override
-    public Collection<Book> all() {
+    public Collection<MyBook> all() {
         return new ArrayList<>(books.values());
     }
 

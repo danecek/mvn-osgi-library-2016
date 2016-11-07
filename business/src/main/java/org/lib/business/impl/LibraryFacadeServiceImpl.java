@@ -8,7 +8,7 @@ package org.lib.business.impl;
 import java.util.Collection;
 import org.lib.business.LibraryFacadeService;
 import org.lib.integration.DAOFactoryService;
-import org.lib.model.Book;
+import org.lib.model.MyBook;
 
 /**
  *
@@ -17,12 +17,12 @@ import org.lib.model.Book;
 public class LibraryFacadeServiceImpl extends LibraryFacadeService {
 
     @Override
-    public void createBook(Book book) {
+    public void createBook(MyBook book) {
         DAOFactoryService.service().getBookDAO().create(book);
     }
 
     @Override
-    public Collection<Book> allBook() {
+    public Collection<MyBook> allBook() {
         return DAOFactoryService.service().getBookDAO().all();
     }
 

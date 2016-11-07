@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package org.lib.richclient;
+package org.lib.richclient.controller;
 
 import javafx.scene.control.Menu;
 import org.lib.utils.Messages;
@@ -16,7 +16,9 @@ public class FileMenu extends Menu {
 
     public FileMenu() {
         super(Messages.File.createMessage());
-        this.getItems().addAll(ExitAction.inst.createItem());
+        this.getItems().addAll(
+            ExitAction.inst.createItem(),
+            CreateBookAction.inst.createItem());
     }
 
 }

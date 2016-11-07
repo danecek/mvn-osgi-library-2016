@@ -7,7 +7,7 @@ package org.lib.business;
 
 import java.util.Collection;
 import org.lib.business.impl.LibraryFacadeServiceImpl;
-import org.lib.model.Book;
+import org.lib.model.MyBook;
 
 /**
  *
@@ -26,8 +26,8 @@ public abstract class LibraryFacadeService {
 
     }
 
-    public abstract void createBook(Book book);
+    public abstract void createBook(MyBook book);
 
-    public abstract Collection<Book> allBook();
+    public abstract Collection<MyBook> allBook();
 
 }

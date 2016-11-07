@@ -3,14 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package org.lib.integration;
+package org.lib.richclient.controller;
 
-import java.util.Collection;
-import org.lib.model.MyBook;
-
-public interface BookDAO {
-
-    public void create(MyBook book);
-
-    Collection<MyBook> all();
+/**
+ *
+ * @author danecek
+ */
+class authorTf {
+    
 }

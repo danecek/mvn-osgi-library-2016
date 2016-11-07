@@ -9,18 +9,18 @@ package org.lib.model;
  *
  * @author danecek
  */
-public class Book {
+public class MyBook {
 
     private BookId bookId;
     private String title;
     private String author;
 
-    public Book(String title, String author) {
+    public MyBook(String title, String author) {
         this.title = title;
         this.author = author;
     }
 
-    public Book(BookId bookId, String title, String author) {
+    public MyBook(BookId bookId, String title, String author) {
         this(title, author);
         this.bookId = bookId;
     }
