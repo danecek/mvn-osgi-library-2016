@@ -18,7 +18,8 @@ public class FileMenu extends Menu {
         super(Messages.File.createMessage());
         this.getItems().addAll(
             ExitAction.inst.createItem(),
-            CreateBookAction.inst.createItem());
+            CreateBookAction.inst.createItem(),
+            ClearAllBooksAction.inst.createItem());
     }
 
 }

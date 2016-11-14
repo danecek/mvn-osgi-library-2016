@@ -34,4 +34,9 @@ public final class BookDAODefault implements BookDAO {
         return new ArrayList<>(books.values());
     }
 
+    @Override
+    public void clear() {
+        books.clear();
+    }
+
 }

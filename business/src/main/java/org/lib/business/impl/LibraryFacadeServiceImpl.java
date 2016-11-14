@@ -9,6 +9,7 @@ import java.util.Collection;
 import org.lib.business.LibraryFacadeService;
 import org.lib.integration.DAOFactoryService;
 import org.lib.model.MyBook;
+import org.lib.utils.LibException;
 
 /**
  *
@@ -17,13 +18,18 @@ import org.lib.model.MyBook;
 public class LibraryFacadeServiceImpl extends LibraryFacadeService {
 
     @Override
-    public void createBook(MyBook book) {
+    public void createBook(MyBook book)throws LibException {
         DAOFactoryService.service().getBookDAO().create(book);
     }
 
     @Override
-    public Collection<MyBook> allBook() {
+    public Collection<MyBook> allBook()throws LibException {
         return DAOFactoryService.service().getBookDAO().all();
+    }
+
+    @Override
+    public void clearAllBook() throws LibException {
+        DAOFactoryService.service().getBookDAO().clear();
     }
 
 }

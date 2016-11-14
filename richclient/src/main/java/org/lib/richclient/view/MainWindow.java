@@ -34,11 +34,11 @@ public class MainWindow extends Stage {
                 stop();
             }
         });
- 
-       BookPane bp = new BookPane();
+
+        BookPane bp = new BookPane();
         bp.refresh();
         VBox vbox = new VBox();
-        vbox.getChildren().addAll(new MenuBar(new FileMenu()), bp);
+        vbox.getChildren().addAll(new MenuBar(new FileMenu()), new LibToolBar(), bp);
         Scene s = new Scene(vbox, 1200, 1000);
         setScene(s);
         show();

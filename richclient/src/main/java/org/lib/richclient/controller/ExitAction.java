@@ -6,15 +6,8 @@
 package org.lib.richclient.controller;
 
 import org.lib.richclient.view.MainWindow;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.scene.control.MenuItem;
 import org.lib.utils.Messages;
 
-/**
- *
- * @author danecek
- */
 public class ExitAction extends LibAbstractAction {
 
     public static ExitAction inst = new ExitAction();

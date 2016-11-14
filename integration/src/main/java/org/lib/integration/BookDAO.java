@@ -7,10 +7,13 @@ package org.lib.integration;
 
 import java.util.Collection;
 import org.lib.model.MyBook;
+import org.lib.utils.LibException;
 
 public interface BookDAO {
 
-    public void create(MyBook book);
+    public void create(MyBook book) throws LibException;
 
-    Collection<MyBook> all();
+    Collection<MyBook> all() throws LibException;
+    
+    void clear() throws LibException; 
 }

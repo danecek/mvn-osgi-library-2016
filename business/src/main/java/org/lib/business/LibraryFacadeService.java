@@ -8,6 +8,7 @@ package org.lib.business;
 import java.util.Collection;
 import org.lib.business.impl.LibraryFacadeServiceImpl;
 import org.lib.model.MyBook;
+import org.lib.utils.LibException;
 
 /**
  *
@@ -23,11 +24,11 @@ public abstract class LibraryFacadeService {
             service = new LibraryFacadeServiceImpl();
         }
         return service;
-
     }
 
-    public abstract void createBook(MyBook book);
+    public abstract void createBook(MyBook book) throws LibException;
 
-    public abstract Collection<MyBook> allBook();
+    public abstract Collection<MyBook> allBook() throws LibException;
 
+    public abstract void clearAllBook() throws LibException;
 }

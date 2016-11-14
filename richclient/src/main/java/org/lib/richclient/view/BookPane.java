@@ -7,6 +7,8 @@ package org.lib.richclient.view;
 
 import java.util.Observable;
 import java.util.Observer;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
@@ -17,6 +19,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import org.lib.business.LibraryFacadeService;
 import org.lib.model.MyBook;
 import org.lib.richclient.LibObservable;
+import org.lib.utils.LibException;
 import org.lib.utils.Messages;
 
 /**
@@ -47,7 +50,12 @@ public class BookPane extends TitledPane implements Observer {
     }
 
     public void refresh() {
-         books.setAll(LibraryFacadeService.service().allBook());
+        try {
+            books.setAll(LibraryFacadeService.service().allBook());
+        } catch (LibException ex) {
+            MyAlert.error(ex);
+        }
+         
     }
 
     @Override

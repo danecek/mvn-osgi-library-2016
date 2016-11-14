@@ -6,6 +6,8 @@
 package org.lib.richclient.controller;
 
 import java.util.Optional;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.control.ButtonType;
@@ -17,6 +19,8 @@ import javafx.scene.text.Text;
 import org.lib.business.LibraryFacadeService;
 import org.lib.model.MyBook;
 import org.lib.richclient.LibObservable;
+import org.lib.richclient.view.MyAlert;
+import org.lib.utils.LibException;
 import org.lib.utils.Messages;
 
 /**
@@ -52,10 +56,14 @@ public final class CreateBookDialog extends Dialog<ButtonType> implements MyVali
     }
 
     public void ok() {
-        validate();
-        MyBook book = new MyBook(title, author);
-        LibraryFacadeService.service().createBook(book);
-        LibObservable.INST.stateChanged();
+        try {
+            validate();
+            MyBook book = new MyBook(title, author);
+            LibraryFacadeService.service().createBook(book);
+            LibObservable.INST.stateChanged();
+        } catch (LibException ex) {
+            MyAlert.error(ex);
+        }
     }
 
     public void execute() {
