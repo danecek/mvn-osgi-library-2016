@@ -40,7 +40,7 @@ public class DerbyDAOFactoryService extends DAOFactoryService {
                         + "TITLE   VARCHAR(50),"
                         + "AUTHOR  VARCHAR(50),"
                         + "PRIMARY KEY (ID))");
-                
+
             }
         } catch (SQLException ex) {
             Logger.getLogger(DerbyDAOFactoryService.class.getName()).log(Level.SEVERE, null, ex);
@@ -49,9 +49,13 @@ public class DerbyDAOFactoryService extends DAOFactoryService {
     private static final Logger LOG = Logger.getLogger(DerbyDAOFactoryService.class.getName());
 
     DerbyBookDAO derbyBookDAO;
+
     @Override
     public BookDAO getBookDAO() {
-        return new DerbyBookDAO(conn);
+        if (derbyBookDAO == null) {
+            derbyBookDAO = new DerbyBookDAO(conn);
+        }
+        return derbyBookDAO;
     }
 
 }

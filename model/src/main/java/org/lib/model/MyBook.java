@@ -5,11 +5,13 @@
  */
 package org.lib.model;
 
+import java.io.Serializable;
+
 /**
  *
  * @author danecek
  */
-public class MyBook {
+public class MyBook implements Serializable {
 
     private BookId bookId;
     private String title;
