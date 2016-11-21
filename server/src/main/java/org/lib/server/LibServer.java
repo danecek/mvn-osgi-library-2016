@@ -5,8 +5,10 @@
  */
 package org.lib.server;
 
+import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
@@ -16,14 +18,17 @@ import java.util.logging.Logger;
 public class LibServer implements Runnable {
 
     @Override
-    public void run() {
+    public void run() {       
         
-        
-        ServerSocket ss = new ServerSocket(3333);
-        for(;;) {
-            LOG.info("waiting for client");
-            Socket s = ss.accept();
-            new Thread(new ClientTask(s)).start();
+        try {
+            ServerSocket ss = new ServerSocket(3333);
+            for(;;) {
+                LOG.info("waiting for client");
+                Socket s = ss.accept();
+                new Thread(new ClientTask(s)).start();
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(LibServer.class.getName()).log(Level.SEVERE, null, ex);
         }
         
     }

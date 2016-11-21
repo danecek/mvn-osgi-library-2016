@@ -21,3 +21,6 @@ hs_err_pid*
 /business/target/
 /richclient/target/
 /derbyDB/target/
+/protocol/target/
+/server/target/
+/proxy/target/

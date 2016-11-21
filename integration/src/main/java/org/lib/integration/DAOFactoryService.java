@@ -5,6 +5,7 @@
  */
 package org.lib.integration;
 
+import java.util.logging.Logger;
 import org.lib.integration.impl.DAOFactoryServiceImpl;
 import org.osgi.util.tracker.ServiceTracker;
 
@@ -16,17 +17,15 @@ public abstract class DAOFactoryService {
     public static DAOFactoryService service() {
         service = st.getService();
         if (service == null) {
+            LOG.info("default DAOFactoryServiceImpl");
             service = new DAOFactoryServiceImpl();
         }
         return service;
     }
+    private static final Logger LOG = Logger.getLogger(DAOFactoryService.class.getName());
 
     public abstract BookDAO getBookDAO();
 
-
-    /**
-     * @param aSt the st to set
-     */
     public static void setSt(ServiceTracker<DAOFactoryService, DAOFactoryService> aSt) {
         st = aSt;
     }

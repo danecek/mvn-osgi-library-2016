@@ -11,7 +11,7 @@ import org.lib.utils.LibException;
 public class AllBook extends Command {
 
     @Override
-    <T> T execute() throws LibException {
+    public <T> T execute() throws LibException {
         return (T) LibraryFacadeService.service().allBook();
     }
     

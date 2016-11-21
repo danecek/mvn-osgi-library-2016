@@ -18,7 +18,7 @@ public class CreateBook extends Command {
     MyBook myBook;
 
     @Override
-    <T> T execute() throws LibException {
+    public <T> T execute() throws LibException {
         LibraryFacadeService.service().createBook(myBook);
         return (T) OK;
     }
