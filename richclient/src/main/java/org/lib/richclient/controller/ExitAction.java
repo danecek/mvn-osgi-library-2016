@@ -5,7 +5,8 @@
  */
 package org.lib.richclient.controller;
 
-import org.lib.richclient.view.MainWindow;
+import org.lib.richclient.LibAbstractAction;
+import org.lib.richclient.MainWindow;
 import org.lib.utils.Messages;
 
 public class ExitAction extends LibAbstractAction {

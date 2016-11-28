@@ -3,12 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package org.lib.richclient.controller;
+package org.lib.richclient;
 
-/**
- *
- * @author danecek
- */
-public class AbstrDialog {
+
+public interface MyValidator  {
+    
+   boolean validate();
     
 }

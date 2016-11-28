@@ -8,8 +8,8 @@ package org.lib.richclient.controller;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.lib.business.LibraryFacadeService;
-import org.lib.richclient.LibObservable;
-import org.lib.richclient.view.MyAlert;
+import org.lib.richclient.LibAbstractAction;
+import org.lib.richclient.MyAlert;
 import org.lib.utils.LibException;
 import org.lib.utils.Messages;
 

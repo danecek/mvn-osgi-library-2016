@@ -17,7 +17,7 @@ import java.util.logging.Logger;
 public enum Messages {
 
     Library,
-    Books, Id, Title, Author, Exit, File, Empty_author, Empty_title, Create_book, Clear_all_books;
+    Books, Id, Title, Author, Exit, File, Empty_author, Empty_title, Create_book, Clear_all_books, Port, Host, Empty_host, Invalid_port, Connect, Disconnect, Not_connected;
 
     private static final Logger LOG = Logger.getLogger(Messages.class.getName());
     private static final ResourceBundle rb = ResourceBundle.getBundle("org.lib.utils.Messages");
@@ -27,11 +27,9 @@ public enum Messages {
             String m = (String) rb.getString(this.name());
             return MessageFormat.format(m, args);
         } catch (MissingResourceException ex) {
-         //   LOG.log(Level.SEVERE, "missing resource", ex);
+            //   LOG.log(Level.SEVERE, "missing resource", ex);
             return name().replace('_', ' ');
         }
     }
-
-
 
 }

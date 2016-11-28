@@ -6,8 +6,11 @@
 package org.lib.proxy;
 
 import java.util.Collection;
+import org.lib.connection.LibConnection;
 import org.lib.business.LibraryFacadeService;
 import org.lib.model.MyBook;
+import org.lib.protocol.AllBook;
+import org.lib.protocol.ClearAllBook;
 import org.lib.protocol.CreateBook;
 import org.lib.utils.LibException;
 
@@ -19,21 +22,21 @@ public class LibraryFacadeServiceProxy extends LibraryFacadeService {
 
     @Override
     public void createBook(MyBook book) throws LibException {
-        send(new CreateBook(book));
+        LibConnection.inst.send(new CreateBook(book));
     }
 
     @Override
     public Collection<MyBook> allBook() throws LibException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       return LibConnection.inst.send(new AllBook());
     }
 
     @Override
     public void clearAllBook() throws LibException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       LibConnection.inst.send(new ClearAllBook());
     }
 
-    private void send(CreateBook createBook) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+//    private void send(CreateBook createBook) {
+//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+//    }
 
 }

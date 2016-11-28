@@ -9,6 +9,7 @@ import java.util.Collection;
 import org.lib.business.impl.LibraryFacadeServiceImpl;
 import org.lib.model.MyBook;
 import org.lib.utils.LibException;
+import org.osgi.util.tracker.ServiceTracker;
 
 /**
  *
@@ -17,13 +18,18 @@ import org.lib.utils.LibException;
 public abstract class LibraryFacadeService {
 
     private static LibraryFacadeService service;
+    private static ServiceTracker<LibraryFacadeService, LibraryFacadeService> xst;
 
     public static LibraryFacadeService service() {
-        // todo
+        service = xst.getService();
         if (service == null) {
             service = new LibraryFacadeServiceImpl();
         }
         return service;
+    }
+
+    static void setSt(ServiceTracker<LibraryFacadeService, LibraryFacadeService> st) {
+        xst = st;
     }
 
     public abstract void createBook(MyBook book) throws LibException;

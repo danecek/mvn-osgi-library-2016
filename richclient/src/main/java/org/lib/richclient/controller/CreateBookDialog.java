@@ -6,8 +6,6 @@
 package org.lib.richclient.controller;
 
 import java.util.Optional;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.control.ButtonType;
@@ -18,8 +16,10 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import org.lib.business.LibraryFacadeService;
 import org.lib.model.MyBook;
-import org.lib.richclient.LibObservable;
-import org.lib.richclient.view.MyAlert;
+import org.lib.richclient.AbstrDialog;
+import org.lib.richclient.MyTextField;
+import org.lib.richclient.MyValidator;
+import org.lib.richclient.MyAlert;
 import org.lib.utils.LibException;
 import org.lib.utils.Messages;
 
@@ -27,16 +27,16 @@ import org.lib.utils.Messages;
  *
  * @author danecek
  */
-public final class CreateBookDialog extends Dialog<ButtonType> implements MyValidator {
+public final class CreateBookDialog extends AbstrDialog implements MyValidator {
 
     MyTextField authorTf;
     MyTextField titleTf;
 
-    Text errorMessage = new Text();
     private String author;
     private String title;
 
-    Node content() {
+    @Override
+    public Node content() {
         GridPane gp = new GridPane();
         gp.setPadding(new Insets(5));
         gp.setHgap(5);
@@ -63,13 +63,6 @@ public final class CreateBookDialog extends Dialog<ButtonType> implements MyVali
             LibObservable.INST.stateChanged();
         } catch (LibException ex) {
             MyAlert.error(ex);
-        }
-    }
-
-    public void execute() {
-        Optional<ButtonType> result = showAndWait();
-        if (result.isPresent() && result.get() == ButtonType.OK) {
-            ok();
         }
     }
 

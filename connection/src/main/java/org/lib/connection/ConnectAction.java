@@ -3,28 +3,26 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package org.lib.richclient.controller;
+package org.lib.connection;
 
+import java.util.logging.Logger;
 import org.lib.richclient.LibAbstractAction;
-import org.lib.richclient.MainWindow;
 import org.lib.utils.Messages;
 
 /**
  *
  * @author danecek
  */
-public class CreateBookAction extends LibAbstractAction {
-
-    public static CreateBookAction inst = new CreateBookAction();
-
-    private CreateBookAction() {
-        super(Messages.Create_book.createMessage());
-    }
+public class ConnectAction extends LibAbstractAction {
 
     @Override
     public void execute() {
-        new CreateBookDialog().execute();
+        new ConnectDialog().execute();
     }
 
-
+    public ConnectAction() {
+        super(Messages.Connect.createMessage());
+    }
+    private static final Logger LOG = Logger.getLogger(ConnectAction.class.getName());
+    
 }

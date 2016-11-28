@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package org.lib.richclient.controller;
+package org.lib.richclient;
 
 import java.util.Observable;
 import java.util.Observer;
@@ -12,7 +12,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuItem;
-import org.lib.richclient.LibObservable;
+import org.lib.richclient.controller.LibObservable;
 
 /**
  *

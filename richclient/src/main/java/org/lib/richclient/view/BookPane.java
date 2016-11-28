@@ -5,6 +5,7 @@
  */
 package org.lib.richclient.view;
 
+import org.lib.richclient.MyAlert;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.logging.Level;
@@ -18,7 +19,7 @@ import javafx.scene.control.TitledPane;
 import javafx.scene.control.cell.PropertyValueFactory;
 import org.lib.business.LibraryFacadeService;
 import org.lib.model.MyBook;
-import org.lib.richclient.LibObservable;
+import org.lib.richclient.controller.LibObservable;
 import org.lib.utils.LibException;
 import org.lib.utils.Messages;
 
