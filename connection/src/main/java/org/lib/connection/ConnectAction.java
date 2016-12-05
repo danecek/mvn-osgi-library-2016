@@ -5,7 +5,6 @@
  */
 package org.lib.connection;
 
-import java.util.logging.Logger;
 import org.lib.richclient.LibAbstractAction;
 import org.lib.utils.Messages;
 

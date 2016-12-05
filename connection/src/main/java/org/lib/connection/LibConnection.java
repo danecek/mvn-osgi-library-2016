@@ -28,8 +28,8 @@ public class LibConnection {
 
     public void connect(String host, int port) throws IOException {
         s = new Socket(host, port);
-        oos = new ObjectOutputStream(s.getOutputStream());
         ois = new ObjectInputStream(s.getInputStream());
+        oos = new ObjectOutputStream(s.getOutputStream());
     }
 
     public boolean isConnected() {
@@ -42,7 +42,6 @@ public class LibConnection {
                 ObjectInputStream ois = this.ois) {
         }
         s = null;
-
     }
 
     public <T> T send(Command com) throws LibException {
