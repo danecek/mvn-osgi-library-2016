@@ -55,6 +55,7 @@ public final class CreateBookDialog extends AbstrDialog implements MyValidator {
         validate();
     }
 
+    @Override
     public void ok() {
         try {
             validate();

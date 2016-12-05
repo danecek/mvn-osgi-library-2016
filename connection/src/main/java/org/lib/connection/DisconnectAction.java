@@ -16,6 +16,8 @@ import org.lib.utils.Messages;
  * @author danecek
  */
 public class DisconnectAction extends LibAbstractAction {
+    
+    public static DisconnectAction instance = new DisconnectAction();
 
     @Override
     public void execute() {
@@ -26,9 +28,15 @@ public class DisconnectAction extends LibAbstractAction {
         }
     }
 
+    @Override
+    public boolean checkDisable() {
+        return !LibConnection.inst.isConnected();
+    }
+    
+    
+
     public DisconnectAction() {
         super(Messages.Disconnect.createMessage());
     }
-    private static final Logger LOG = Logger.getLogger(DisconnectAction.class.getName());
 
 }

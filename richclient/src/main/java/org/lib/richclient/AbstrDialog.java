@@ -10,15 +10,8 @@ import javafx.scene.Node;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Dialog;
 import javafx.scene.text.Text;
-import org.lib.business.LibraryFacadeService;
-import org.lib.model.MyBook;
-import org.lib.richclient.controller.LibObservable;
-import org.lib.utils.LibException;
 
-/**
- *
- * @author danecek
- */
+
 public abstract class AbstrDialog extends Dialog<ButtonType> implements MyValidator {
 
     protected Text errorMessage = new Text();
@@ -34,6 +27,7 @@ public abstract class AbstrDialog extends Dialog<ButtonType> implements MyValida
 
     protected abstract void ok();
 
+    @Override
     public abstract boolean validate();
 
 }

@@ -19,7 +19,7 @@ public class ExitAction extends LibAbstractAction {
 
     @Override
     public void execute() {
-        MainWindow.stop();
+        MainWindow.getInstance().stop();
     }
 
 

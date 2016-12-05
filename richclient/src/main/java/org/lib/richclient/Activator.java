@@ -18,9 +18,10 @@ public class Activator implements BundleActivator {
 
             @Override
             public void run() {
-                new MainWindow(context);
+                MainWindow.getInstance().setContext(context);
             }
         });
+
     }
 
     @Override

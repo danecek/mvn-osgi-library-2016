@@ -24,11 +24,37 @@ import org.osgi.framework.launch.Framework;
 
 public class MainWindow extends Stage {
 
-    static Framework p;
+    /**
+     * @return the instance
+     */
+    public static synchronized MainWindow getInstance() {
+        if (instance == null) {
+            instance = new MainWindow();
+        }
+        return instance;
+    }
+
+    /**
+     * @return the context
+     */
+    public BundleContext getContext() {
+        return context;
+    }
+
+    /**
+     * @param aContext the context to set
+     */
+    public void setContext(BundleContext aContext) {
+        context = aContext;
+    }
+
+    //   static Framework p;
     MenuBar menuBar;
     LibToolBar libToolBar;
 
-    public static MainWindow mainWindow;
+    private static MainWindow instance;
+
+    private BundleContext context;
 
     public void addMenu(Menu menu) {
         menuBar.getMenus().add(menu);
@@ -38,9 +64,8 @@ public class MainWindow extends Stage {
         libToolBar.getItems().add(but);
     }
 
-    public MainWindow(final BundleContext context) {
-        mainWindow = this;
-        p = (Framework) context.getBundle(0);
+    private MainWindow() {
+
         setOnCloseRequest(new EventHandler<WindowEvent>() {
             @Override
             public void handle(WindowEvent event) {
@@ -58,7 +83,8 @@ public class MainWindow extends Stage {
         show();
     }
 
-    public static void stop() {
+    public void stop() {
+        Framework p = (Framework) context.getBundle(0);
         try {
             p.waitForStop(1000);
             p.stop();

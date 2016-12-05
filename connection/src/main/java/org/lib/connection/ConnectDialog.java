@@ -6,12 +6,12 @@
 package org.lib.connection;
 
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
 import org.lib.richclient.AbstrDialog;
 import org.lib.richclient.MyTextField;
 import org.lib.richclient.MyAlert;
@@ -31,6 +31,10 @@ public class ConnectDialog extends AbstrDialog {
     public ConnectDialog() {
         portTf = new MyTextField(this, "3333");
         hostTf = new MyTextField(this, "localhost");
+        setTitle(Messages.Connect.createMessage());
+        getDialogPane().setContent(new VBox(content(), errorMessage));
+        getDialogPane().getButtonTypes().addAll(ButtonType.CANCEL, ButtonType.OK);
+        validate();
     }
 
     @Override
@@ -44,16 +48,16 @@ public class ConnectDialog extends AbstrDialog {
         gp.add(new Label(Messages.Port.createMessage()), 0, 1);
         gp.add(portTf, 1, 1);
         return gp;
-
     }
 
     @Override
     protected void ok() {
-        if (validate())
+        if (validate()) {
             try {
                 LibConnection.inst.connect(host, port);
-        } catch (IOException ex) {
+            } catch (IOException ex) {
                 MyAlert.error(ex);
+            }
         }
     }
 

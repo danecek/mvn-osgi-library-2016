@@ -15,14 +15,20 @@ import org.lib.utils.Messages;
  */
 public class ConnectAction extends LibAbstractAction {
 
+    public static ConnectAction instance = new ConnectAction();
+
     @Override
     public void execute() {
         new ConnectDialog().execute();
     }
+    
+        @Override
+    public boolean checkDisable() {
+        return LibConnection.inst.isConnected();
+    }
 
-    public ConnectAction() {
+    private ConnectAction() {
         super(Messages.Connect.createMessage());
     }
-    private static final Logger LOG = Logger.getLogger(ConnectAction.class.getName());
-    
+
 }

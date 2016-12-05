@@ -30,7 +30,6 @@ public class LibConnection {
         s = new Socket(host, port);
         oos = new ObjectOutputStream(s.getOutputStream());
         ois = new ObjectInputStream(s.getInputStream());
-
     }
 
     public boolean isConnected() {
@@ -41,8 +40,8 @@ public class LibConnection {
         try (Socket s = this.s;
                 ObjectOutputStream oos = this.oos;
                 ObjectInputStream ois = this.ois) {
-
         }
+        s = null;
 
     }
 
