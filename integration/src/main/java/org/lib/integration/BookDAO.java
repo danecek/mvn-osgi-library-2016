@@ -6,6 +6,7 @@
 package org.lib.integration;
 
 import java.util.Collection;
+import org.lib.model.BookId;
 import org.lib.model.MyBook;
 import org.lib.utils.LibException;
 
@@ -16,4 +17,6 @@ public interface BookDAO {
     Collection<MyBook> all() throws LibException;
     
     void clear() throws LibException; 
+
+    public void delete(BookId bookId);
 }

@@ -12,15 +12,12 @@ public class DAOFactoryServiceImpl extends DAOFactoryService {
 
     private BookDAO bookDAO;
 
-    public DAOFactoryServiceImpl() {
-    }
-
     @Override
     public BookDAO getBookDAO() {
         if (bookDAO == null) {
             bookDAO = new BookDAODefault();
         }
-        return bookDAO;
+        return bookDAO;//BookDAODefault.instance;
     }
 
 }

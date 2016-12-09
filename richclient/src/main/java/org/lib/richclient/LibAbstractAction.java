@@ -12,7 +12,6 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuItem;
-import org.lib.richclient.controller.LibObservable;
 
 /**
  *
@@ -25,7 +24,7 @@ public abstract class LibAbstractAction implements Observer {
 
     public LibAbstractAction(String name) {
         this.name = name;
-        LibObservable.INST.addObserver(this);
+        LibObservable.instance.addObserver(this);
     }
 
     public abstract void execute();

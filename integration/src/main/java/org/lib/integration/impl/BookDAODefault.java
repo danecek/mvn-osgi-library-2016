@@ -13,14 +13,13 @@ import org.lib.integration.BookDAO;
 import org.lib.model.MyBook;
 import org.lib.model.BookId;
 
-
 public final class BookDAODefault implements BookDAO {
 
     private final Map<BookId, MyBook> books = new HashMap<>();
     private static int counter;
 
     public BookDAODefault() {
-        create(new MyBook("RUR", "Capek"));                
+        create(new MyBook("RUR", "Capek"));
     }
 
     @Override
@@ -37,6 +36,11 @@ public final class BookDAODefault implements BookDAO {
     @Override
     public void clear() {
         books.clear();
+    }
+
+    @Override
+    public void delete(BookId bookId) {
+        books.remove(bookId);
     }
 
 }

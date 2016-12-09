@@ -20,8 +20,8 @@ public class ConnectAction extends LibAbstractAction {
     public void execute() {
         new ConnectDialog().execute();
     }
-    
-        @Override
+
+    @Override
     public boolean checkDisable() {
         return LibConnection.inst.isConnected();
     }

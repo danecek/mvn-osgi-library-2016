@@ -19,7 +19,7 @@ public class FileMenu extends Menu {
         this.getItems().addAll(
             ExitAction.inst.createItem(),
             CreateBookAction.inst.createItem(),
-            ClearAllBooksAction.inst.createItem());
+            DeleteAllBooksAction.inst.createItem());
     }
 
 }

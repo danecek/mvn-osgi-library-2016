@@ -7,6 +7,7 @@ package org.lib.business;
 
 import java.util.Collection;
 import org.lib.business.impl.LibraryFacadeServiceImpl;
+import org.lib.model.BookId;
 import org.lib.model.MyBook;
 import org.lib.utils.LibException;
 import org.osgi.util.tracker.ServiceTracker;
@@ -21,9 +22,11 @@ public abstract class LibraryFacadeService {
     private static ServiceTracker<LibraryFacadeService, LibraryFacadeService> xst;
 
     public static LibraryFacadeService service() {
-        service = xst.getService();
         if (service == null) {
-            service = new LibraryFacadeServiceImpl();
+            service = xst.getService();
+            if (service == null) {
+                service = new LibraryFacadeServiceImpl();
+            }
         }
         return service;
     }
@@ -37,4 +40,8 @@ public abstract class LibraryFacadeService {
     public abstract Collection<MyBook> allBook() throws LibException;
 
     public abstract void clearAllBook() throws LibException;
+
+    public abstract boolean isConnected();
+
+    public abstract void delete(BookId bookId) throws LibException;
 }

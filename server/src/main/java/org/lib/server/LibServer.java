@@ -18,20 +18,21 @@ import java.util.logging.Logger;
 public class LibServer implements Runnable {
 
     @Override
-    public void run() {       
-        
+    public void run() {
+
         try {
             ServerSocket ss = new ServerSocket(3333);
-            for(;;) {
+            for (;;) {
                 LOG.info("waiting for client");
                 Socket s = ss.accept();
+                LOG.info("client accepted");
                 new Thread(new ClientTask(s)).start();
             }
         } catch (IOException ex) {
             Logger.getLogger(LibServer.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
     }
     private static final Logger LOG = Logger.getLogger(LibServer.class.getName());
-    
+
 }

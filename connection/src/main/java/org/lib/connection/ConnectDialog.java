@@ -13,6 +13,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import org.lib.richclient.AbstrDialog;
+import org.lib.richclient.LibObservable;
 import org.lib.richclient.MyTextField;
 import org.lib.richclient.MyAlert;
 import org.lib.utils.Messages;
@@ -55,6 +56,7 @@ public class ConnectDialog extends AbstrDialog {
         if (validate()) {
             try {
                 LibConnection.inst.connect(host, port);
+                LibObservable.instance.stateChanged();
             } catch (IOException ex) {
                 MyAlert.error(ex);
             }

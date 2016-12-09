@@ -3,14 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package org.lib.richclient.controller;
+package org.lib.richclient;
 
 import java.util.Observable;
 
 
 public class LibObservable extends  Observable {
     
-    public static LibObservable INST = new LibObservable();
+    public static LibObservable instance = new LibObservable();
 
     private LibObservable() {
         

@@ -15,10 +15,12 @@ public abstract class DAOFactoryService {
     private static ServiceTracker<DAOFactoryService, DAOFactoryService> st;
 
     public static DAOFactoryService service() {
-        service = st.getService();
         if (service == null) {
-            LOG.info("default DAOFactoryServiceImpl");
-            service = new DAOFactoryServiceImpl();
+            service = st.getService();
+            if (service == null) {
+                LOG.info("default DAOFactoryServiceImpl");
+                service = new DAOFactoryServiceImpl();
+            }
         }
         return service;
     }

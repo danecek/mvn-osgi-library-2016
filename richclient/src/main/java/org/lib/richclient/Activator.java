@@ -1,6 +1,11 @@
 package org.lib.richclient;
 
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 import java.util.logging.Logger;
+import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.embed.swing.JFXPanel;
 import org.osgi.framework.BundleActivator;
@@ -15,10 +20,9 @@ public class Activator implements BundleActivator {
         LOG.info("");
         new JFXPanel();
         Platform.runLater(new Runnable() {
-
             @Override
             public void run() {
-                MainWindow.getInstance().setContext(context);
+                MainWindow.instance.setContext(context);
             }
         });
 

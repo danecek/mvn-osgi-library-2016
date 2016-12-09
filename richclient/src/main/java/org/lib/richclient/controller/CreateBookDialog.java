@@ -5,15 +5,13 @@
  */
 package org.lib.richclient.controller;
 
-import java.util.Optional;
+import org.lib.richclient.LibObservable;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.control.ButtonType;
-import javafx.scene.control.Dialog;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
 import org.lib.business.LibraryFacadeService;
 import org.lib.model.MyBook;
 import org.lib.richclient.AbstrDialog;
@@ -61,7 +59,7 @@ public final class CreateBookDialog extends AbstrDialog implements MyValidator {
             validate();
             MyBook book = new MyBook(title, author);
             LibraryFacadeService.service().createBook(book);
-            LibObservable.INST.stateChanged();
+            LibObservable.instance.stateChanged();
         } catch (LibException ex) {
             MyAlert.error(ex);
         }

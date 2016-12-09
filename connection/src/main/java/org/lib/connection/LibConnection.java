@@ -11,6 +11,7 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.lib.model.MyBook;
 import org.lib.protocol.Command;
 import org.lib.utils.LibException;
 import org.lib.utils.Messages;
@@ -20,22 +21,24 @@ import org.lib.utils.Messages;
  * @author danecek
  */
 public class LibConnection {
-
+    
     public static final LibConnection inst = new LibConnection();
+    public static final Class[] x = {MyBook.class};
     private Socket s;
     private ObjectOutputStream oos;
     private ObjectInputStream ois;
-
+    
     public void connect(String host, int port) throws IOException {
         s = new Socket(host, port);
+        s.setSoTimeout(1000);
         ois = new ObjectInputStream(s.getInputStream());
         oos = new ObjectOutputStream(s.getOutputStream());
     }
-
+    
     public boolean isConnected() {
         return s != null;
     }
-
+    
     public void disconnect() throws IOException {
         try (Socket s = this.s;
                 ObjectOutputStream oos = this.oos;
@@ -43,12 +46,13 @@ public class LibConnection {
         }
         s = null;
     }
-
+    
     public <T> T send(Command com) throws LibException {
         if (!isConnected()) {
             throw new LibException(Messages.Not_connected.createMessage());
         }
         try {
+            LOG.info(com.toString());
             oos.writeObject(com);
             oos.flush();
             T res = (T) ois.readObject();
@@ -59,10 +63,11 @@ public class LibConnection {
         } catch (IOException ex) {
             throw new LibException(ex);
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(LibConnection.class.getName()).log(Level.SEVERE, null, ex);
+            LOG.log(Level.SEVERE, null, ex);
             throw new RuntimeException(ex);
         }
-
+        
     }
-
+    private static final Logger LOG = Logger.getLogger(LibConnection.class.getName());
+    
 }

@@ -1,12 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package org.lib.richclient;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.application.Application;
+import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -15,6 +12,7 @@ import javafx.scene.control.MenuBar;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
+import org.lib.model.MyBook;
 import org.lib.richclient.controller.FileMenu;
 import org.lib.richclient.view.BookPane;
 import org.lib.richclient.view.LibToolBar;
@@ -24,37 +22,12 @@ import org.osgi.framework.launch.Framework;
 
 public class MainWindow extends Stage {
 
-    /**
-     * @return the instance
-     */
-    public static synchronized MainWindow getInstance() {
-        if (instance == null) {
-            instance = new MainWindow();
-        }
-        return instance;
-    }
+    public static MainWindow instance = new MainWindow();
 
-    /**
-     * @return the context
-     */
-    public BundleContext getContext() {
-        return context;
-    }
-
-    /**
-     * @param aContext the context to set
-     */
-    public void setContext(BundleContext aContext) {
-        context = aContext;
-    }
-
-    //   static Framework p;
-    MenuBar menuBar;
-    LibToolBar libToolBar;
-
-    private static MainWindow instance;
-
+    private MenuBar menuBar;
+    private LibToolBar libToolBar;
     private BundleContext context;
+    private BookPane bp;
 
     public void addMenu(Menu menu) {
         menuBar.getMenus().add(menu);
@@ -64,8 +37,16 @@ public class MainWindow extends Stage {
         libToolBar.getItems().add(but);
     }
 
-    private MainWindow() {
+    public ObservableList<MyBook> getBooks() {
+        return bp.getBooks();
+    }
 
+    public ObservableList<MyBook> getSelectedBooks() {
+        return bp.getSelectedBooks();
+    }
+
+    public MainWindow() {
+        instance = this;
         setOnCloseRequest(new EventHandler<WindowEvent>() {
             @Override
             public void handle(WindowEvent event) {
@@ -73,14 +54,30 @@ public class MainWindow extends Stage {
             }
         });
 
-        BookPane bp = new BookPane();
+        bp = new BookPane();
         bp.refresh();
         VBox vbox = new VBox();
         vbox.getChildren().addAll(menuBar = new MenuBar(new FileMenu()),
                 libToolBar = new LibToolBar(), bp);
-        Scene s = new Scene(vbox, 1200, 1000);
+        Scene s = new Scene(vbox, 800, 600);
         setScene(s);
         show();
+    }
+
+    public LibToolBar getLibToolBar() {
+        return libToolBar;
+    }
+
+    public MenuBar getMenuBar() {
+        return menuBar;
+    }
+
+    public BundleContext getContext() {
+        return context;
+    }
+
+    public void setContext(BundleContext aContext) {
+        context = aContext;
     }
 
     public void stop() {
@@ -88,11 +85,28 @@ public class MainWindow extends Stage {
         try {
             p.waitForStop(1000);
             p.stop();
-        } catch (BundleException ex) {
-            Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (InterruptedException ex) {
+        } catch (BundleException | InterruptedException ex) {
             Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
+//    @Override
+//    public void start(Stage primaryStage) throws Exception {
+//        primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+//            @Override
+//            public void handle(WindowEvent event) {
+//                stop();
+//            }
+//        });
+//
+//        bp = new BookPane();
+//        bp.refresh();
+//        VBox vbox = new VBox();
+//        vbox.getChildren().addAll(menuBar = new MenuBar(new FileMenu()),
+//                libToolBar = new LibToolBar(), bp);
+//        Scene s = new Scene(vbox, 800, 600);
+//        primaryStage.setScene(s);
+//        primaryStage.show();
+//    }
 
 }

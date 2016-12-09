@@ -2,6 +2,7 @@ package org.lib.connection;
 
 import java.util.logging.Logger;
 import javafx.application.Platform;
+import org.lib.richclient.LibObservable;
 import org.lib.richclient.MainWindow;
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
@@ -16,8 +17,9 @@ public class Activator implements BundleActivator {
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
-                MainWindow.getInstance().addTollButton(ConnectAction.instance.createButton());
-                MainWindow.getInstance().addTollButton(DisconnectAction.instance.createButton());
+                MainWindow.instance.addTollButton(ConnectAction.instance.createButton());
+                MainWindow.instance.addTollButton(DisconnectAction.instance.createButton());
+                LibObservable.instance.stateChanged();
             }
         });
 

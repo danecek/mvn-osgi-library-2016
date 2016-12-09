@@ -78,4 +78,9 @@ public class DerbyBookDAO implements BookDAO {
         }
     }
 
+    @Override
+    public void delete(BookId bookId) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }

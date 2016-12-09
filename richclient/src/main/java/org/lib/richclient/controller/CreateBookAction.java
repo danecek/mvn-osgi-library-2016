@@ -1,18 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package org.lib.richclient.controller;
 
+import org.lib.business.LibraryFacadeService;
 import org.lib.richclient.LibAbstractAction;
-import org.lib.richclient.MainWindow;
 import org.lib.utils.Messages;
 
-/**
- *
- * @author danecek
- */
 public class CreateBookAction extends LibAbstractAction {
 
     public static CreateBookAction inst = new CreateBookAction();
@@ -22,9 +13,13 @@ public class CreateBookAction extends LibAbstractAction {
     }
 
     @Override
+    public boolean checkDisable() {
+        return !LibraryFacadeService.service().isConnected();
+    }
+
+    @Override
     public void execute() {
         new CreateBookDialog().execute();
     }
-
 
 }

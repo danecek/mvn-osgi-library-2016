@@ -8,6 +8,7 @@ package org.lib.business.impl;
 import java.util.Collection;
 import org.lib.business.LibraryFacadeService;
 import org.lib.integration.DAOFactoryService;
+import org.lib.model.BookId;
 import org.lib.model.MyBook;
 import org.lib.utils.LibException;
 
@@ -18,18 +19,28 @@ import org.lib.utils.LibException;
 public class LibraryFacadeServiceImpl extends LibraryFacadeService {
 
     @Override
-    public void createBook(MyBook book)throws LibException {
+    public void createBook(MyBook book) throws LibException {
         DAOFactoryService.service().getBookDAO().create(book);
     }
 
     @Override
-    public Collection<MyBook> allBook()throws LibException {
+    public Collection<MyBook> allBook() throws LibException {
         return DAOFactoryService.service().getBookDAO().all();
     }
 
     @Override
     public void clearAllBook() throws LibException {
         DAOFactoryService.service().getBookDAO().clear();
+    }
+
+    @Override
+    public boolean isConnected() {
+        return true;
+    }
+
+    @Override
+    public void delete(BookId bookId) {
+        DAOFactoryService.service().getBookDAO().delete(bookId);
     }
 
 }
