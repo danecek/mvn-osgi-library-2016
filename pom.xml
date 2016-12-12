@@ -21,7 +21,9 @@
         <module>server</module>
         <module>proxy</module>
         <module>connection</module>
-    </modules>
+        <module>connectionXML</module>
+    <module>serverXML</module>
+  </modules>
     <dependencyManagement>
         <dependencies>
             <dependency>

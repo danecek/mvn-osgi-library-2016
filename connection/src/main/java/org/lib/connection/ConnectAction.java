@@ -23,7 +23,7 @@ public class ConnectAction extends LibAbstractAction {
 
     @Override
     public boolean checkDisable() {
-        return LibConnection.inst.isConnected();
+        return LibConnection.getService().isConnected();
     }
 
     private ConnectAction() {

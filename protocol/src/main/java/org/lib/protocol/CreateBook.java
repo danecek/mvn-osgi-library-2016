@@ -5,17 +5,18 @@
  */
 package org.lib.protocol;
 
+import javax.xml.bind.annotation.XmlRootElement;
 import org.lib.business.LibraryFacadeService;
 import org.lib.model.MyBook;
 import org.lib.utils.LibException;
 
-/**
- *
- * @author danecek
- */
+@XmlRootElement
 public class CreateBook extends Command {
 
-    MyBook myBook;
+    public CreateBook() {
+    }
+
+    private MyBook myBook;
 
     @Override
     public <T> T execute() throws LibException {
@@ -24,6 +25,20 @@ public class CreateBook extends Command {
     }
 
     public CreateBook(MyBook myBook) {
+        this.myBook = myBook;
+    }
+
+    /**
+     * @return the myBook
+     */
+    public MyBook getMyBook() {
+        return myBook;
+    }
+
+    /**
+     * @param myBook the myBook to set
+     */
+    public void setMyBook(MyBook myBook) {
         this.myBook = myBook;
     }
 

@@ -55,7 +55,7 @@ public class ConnectDialog extends AbstrDialog {
     protected void ok() {
         if (validate()) {
             try {
-                LibConnection.inst.connect(host, port);
+                LibConnection.getService().connect(host, port);
                 LibObservable.instance.stateChanged();
             } catch (IOException ex) {
                 MyAlert.error(ex);

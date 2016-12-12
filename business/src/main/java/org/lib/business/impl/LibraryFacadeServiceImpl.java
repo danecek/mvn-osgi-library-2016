@@ -5,11 +5,12 @@
  */
 package org.lib.business.impl;
 
-import java.util.Collection;
+import java.util.ArrayList;
 import org.lib.business.LibraryFacadeService;
 import org.lib.integration.DAOFactoryService;
 import org.lib.model.BookId;
 import org.lib.model.MyBook;
+import org.lib.model.MyBooks;
 import org.lib.utils.LibException;
 
 /**
@@ -24,8 +25,8 @@ public class LibraryFacadeServiceImpl extends LibraryFacadeService {
     }
 
     @Override
-    public Collection<MyBook> allBook() throws LibException {
-        return DAOFactoryService.service().getBookDAO().all();
+    public MyBooks allBook() throws LibException {
+        return new MyBooks(new ArrayList<>(DAOFactoryService.service().getBookDAO().all()));
     }
 
     @Override

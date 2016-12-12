@@ -5,9 +5,11 @@
  */
 package org.lib.protocol;
 
+import javax.xml.bind.annotation.XmlRootElement;
 import org.lib.business.LibraryFacadeService;
 import org.lib.utils.LibException;
 
+@XmlRootElement
 public class ClearAllBook extends Command {
 
     @Override

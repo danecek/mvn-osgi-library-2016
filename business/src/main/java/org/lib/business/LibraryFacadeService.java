@@ -5,10 +5,10 @@
  */
 package org.lib.business;
 
-import java.util.Collection;
 import org.lib.business.impl.LibraryFacadeServiceImpl;
 import org.lib.model.BookId;
 import org.lib.model.MyBook;
+import org.lib.model.MyBooks;
 import org.lib.utils.LibException;
 import org.osgi.util.tracker.ServiceTracker;
 
@@ -37,7 +37,7 @@ public abstract class LibraryFacadeService {
 
     public abstract void createBook(MyBook book) throws LibException;
 
-    public abstract Collection<MyBook> allBook() throws LibException;
+    public abstract MyBooks allBook() throws LibException;
 
     public abstract void clearAllBook() throws LibException;
 

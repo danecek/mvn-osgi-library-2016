@@ -25,3 +25,5 @@ hs_err_pid*
 /server/target/
 /proxy/target/
 /connection/target/
+/connectionXML/target/
+/serverXML/target/

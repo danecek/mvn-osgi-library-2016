@@ -6,6 +6,7 @@ import org.lib.richclient.LibObservable;
 import org.lib.richclient.MainWindow;
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
+import org.osgi.util.tracker.ServiceTracker;
 
 public class Activator implements BundleActivator {
 
@@ -22,7 +23,11 @@ public class Activator implements BundleActivator {
                 LibObservable.instance.stateChanged();
             }
         });
-
+        ServiceTracker<LibConnection, LibConnection> st
+                = new ServiceTracker<LibConnection, LibConnection>(context,
+                        LibConnection.class, null);
+        st.open();
+        LibConnection.setSt(st);
     }
 
     @Override

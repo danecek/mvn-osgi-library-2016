@@ -69,7 +69,7 @@ public class BookPane extends TitledPane implements Observer {
             return;
         }
         try {
-            getBooks().setAll(LibraryFacadeService.service().allBook());
+            getBooks().setAll(LibraryFacadeService.service().allBook().getBooks());
         } catch (LibException ex) {
             MyAlert.error(ex);
         }

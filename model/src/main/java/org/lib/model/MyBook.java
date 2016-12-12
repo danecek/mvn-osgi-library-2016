@@ -6,12 +6,13 @@
 package org.lib.model;
 
 import java.io.Serializable;
+import javax.xml.bind.annotation.XmlRootElement;
 
-/**
- *
- * @author danecek
- */
+@XmlRootElement
 public class MyBook implements Serializable {
+
+    public MyBook() {
+    }
 
     private BookId bookId;
     private String title;
@@ -46,5 +47,26 @@ public class MyBook implements Serializable {
      */
     public String getAuthor() {
         return author;
+    }
+
+    /**
+     * @param bookId the bookId to set
+     */
+    public void setBookId(BookId bookId) {
+        this.bookId = bookId;
+    }
+
+    /**
+     * @param title the title to set
+     */
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    /**
+     * @param author the author to set
+     */
+    public void setAuthor(String author) {
+        this.author = author;
     }
 }

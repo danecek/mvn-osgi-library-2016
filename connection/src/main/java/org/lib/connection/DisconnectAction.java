@@ -23,7 +23,7 @@ public class DisconnectAction extends LibAbstractAction {
     @Override
     public void execute() {
         try {
-            LibConnection.inst.disconnect();
+            LibConnection.getService().disconnect();
             LibObservable.instance.stateChanged();
         } catch (IOException ex) {
             Logger.getLogger(DisconnectAction.class.getName()).log(Level.SEVERE, null, ex);
@@ -32,7 +32,7 @@ public class DisconnectAction extends LibAbstractAction {
 
     @Override
     public boolean checkDisable() {
-        return !LibConnection.inst.isConnected();
+        return !LibConnection.getService().isConnected();
     }
 
     public DisconnectAction() {
