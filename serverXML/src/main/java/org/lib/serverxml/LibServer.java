@@ -1,21 +1,20 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package org.lib.serverxml;
 
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
- *
- * @author danecek
- */
 public class LibServer implements Runnable {
+
+    ExecutorService es;
+
+    public LibServer(ExecutorService es) {
+        this.es = es;
+    }
 
     @Override
     public void run() {
@@ -26,7 +25,7 @@ public class LibServer implements Runnable {
                 LOG.info("waiting for client");
                 Socket s = ss.accept();
                 LOG.info("client accepted");
-                new Thread(new ClientTask(s)).start();
+                es.submit(new ClientTask(s));
             }
         } catch (IOException ex) {
             Logger.getLogger(LibServer.class.getName()).log(Level.SEVERE, null, ex);

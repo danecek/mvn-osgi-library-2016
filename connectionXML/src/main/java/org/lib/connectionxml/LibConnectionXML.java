@@ -5,6 +5,7 @@
  */
 package org.lib.connectionxml;
 
+import java.io.DataInput;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -19,84 +20,79 @@ import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 import org.lib.connection.LibConnection;
 import org.lib.model.MyBooks;
-import org.lib.protocol.AllBookCommand;
-import org.lib.protocol.DeleteAllBookCommand;
+import org.lib.protocol.AllBook;
+import org.lib.protocol.ClearAllBook;
 import org.lib.protocol.Command;
-import org.lib.protocol.CreateBookCommand;
-import org.lib.protocol.DeleteBookCommand;
+import org.lib.protocol.CreateBook;
+import org.lib.protocol.DeleteBook;
 import org.lib.protocol.Ok;
 import org.lib.utils.LibException;
-import org.lib.utils.Messages;
-import static org.lib.utils.Messages.Books;
 
+/**
+ *
+ * @author danecek
+ */
 public class LibConnectionXML extends LibConnection {
 
     private Socket s;
-    private DataInputStream ois;
-    private DataOutputStream oos;
-    private Marshaller jxbm;
-    private Unmarshaller jxbu;
+    private DataInputStream dis;
+    private DataOutputStream dos;
+    private Marshaller m;
+    private Unmarshaller u;
+
+    public LibConnectionXML() {
+        try {
+            JAXBContext jxbc = JAXBContext.newInstance(AllBook.class,
+                    CreateBook.class, ClearAllBook.class, DeleteBook.class,
+                    MyBooks.class, Ok.class);
+            m = jxbc.createMarshaller();
+            u = jxbc.createUnmarshaller();
+        } catch (JAXBException ex) {
+            Logger.getLogger(LibConnectionXML.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
     @Override
     public void connect(String host, int port) throws IOException {
         s = new Socket(host, port);
-        s.setSoTimeout(5000);
-        ois = new DataInputStream(s.getInputStream());
-        oos = new DataOutputStream(s.getOutputStream());
-        try {
-            JAXBContext jxbc = JAXBContext.newInstance(AllBookCommand.class,
-                    CreateBookCommand.class, DeleteBookCommand.class, 
-                    DeleteAllBookCommand.class, MyBooks.class, Ok.class);
-            jxbm = jxbc.createMarshaller();
-            jxbu = jxbc.createUnmarshaller();
-        } catch (JAXBException ex) {
-            LOG.log(Level.SEVERE, null, ex);
-            throw new RuntimeException(ex);
-        }
+        dis = new DataInputStream(s.getInputStream());
+        dos = new DataOutputStream(s.getOutputStream());
     }
+
+    @Override
+    public void disconnect() throws IOException {
+
+    }
+
+    @Override
+    public <T> T send(Command com) throws LibException {
+        try {
+            StringWriter sw = new StringWriter();
+            m.marshal(com, sw);
+            String comStr = sw.toString();
+            LOG.info(comStr);
+            dos.writeUTF(comStr);
+            dos.flush();
+            String resStr = dis.readUTF();
+            LOG.info(resStr);
+            Object res = u.unmarshal(new StringReader(resStr));
+            if (res instanceof Exception) {
+                throw new LibException(resStr);
+            }
+            return (T) res;
+        } catch (JAXBException ex) {
+            Logger.getLogger(LibConnectionXML.class.getName()).log(Level.SEVERE, null, ex);
+            throw new RuntimeException(ex);
+        } catch (IOException ex) {
+            throw new LibException(ex);
+        }
+
+    }
+    private static final Logger LOG = Logger.getLogger(LibConnectionXML.class.getName());
 
     @Override
     public boolean isConnected() {
         return s != null;
     }
-
-    @Override
-    public void disconnect() throws IOException {
-        try (Socket s = this.s;
-                DataOutputStream oos = this.oos;
-                DataInputStream ois = this.ois) {
-        }
-        s = null;
-    }
-
-    @Override
-    public <T> T send(Command com) throws LibException {
-        if (!isConnected()) {
-            throw new LibException(Messages.Not_connected.createMessage());
-        }
-        try {
-            StringWriter sw = new StringWriter();
-            jxbm.marshal(com, sw);
-            String comStr = sw.toString();
-            LOG.info(comStr);
-            oos.writeUTF(comStr);
-            oos.flush();
-            String resStr = ois.readUTF();
-            LOG.info("received: " + resStr);
-            Object res = jxbu.unmarshal(new StringReader(resStr));
-            if (res instanceof LibException) {
-                throw (LibException) res;
-            }
-            return (T) res;
-        } catch (IOException ex) {
-            LOG.log(Level.SEVERE, null, ex);
-            throw new LibException(ex);
-        } catch (JAXBException ex) {
-            LOG.log(Level.SEVERE, null, ex);
-            throw new RuntimeException(ex);
-        }
-
-    }
-    private static final Logger LOG = Logger.getLogger(LibConnectionXML.class.getName());
 
 }

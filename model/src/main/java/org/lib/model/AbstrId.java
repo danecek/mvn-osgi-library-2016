@@ -9,7 +9,17 @@ import java.io.Serializable;
 
 public class AbstrId<T extends AbstrId> implements Comparable<T>, Serializable {
 
+    /**
+     * @param id the id to set
+     */
+    public void setId(int id) {
+        this.id = id;
+    }
+
     private int id;
+
+    public AbstrId() {
+    }
 
     public AbstrId(int id) {
         this.id = id;

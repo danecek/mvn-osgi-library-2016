@@ -5,10 +5,17 @@
  */
 package org.lib.protocol;
 
-import java.io.Serializable;
 import javax.xml.bind.annotation.XmlRootElement;
+import org.lib.business.LibraryFacadeService;
+import org.lib.utils.LibException;
 
 @XmlRootElement
-public class Ok implements Serializable {
-    
+public class ClearAllBook extends Command {
+
+    @Override
+    public <T> T execute() throws LibException {
+        LibraryFacadeService.service().clearAllBook();
+        return (T) OK;
+    }
+
 }

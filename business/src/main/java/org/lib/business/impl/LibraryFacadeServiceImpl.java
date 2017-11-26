@@ -5,7 +5,7 @@
  */
 package org.lib.business.impl;
 
-import java.util.Collection;
+import java.util.ArrayList;
 import org.lib.business.LibraryFacadeService;
 import org.lib.integration.DAOFactoryService;
 import org.lib.model.BookId;
@@ -26,8 +26,7 @@ public class LibraryFacadeServiceImpl extends LibraryFacadeService {
 
     @Override
     public MyBooks allBook() throws LibException {
-        MyBooks b = new MyBooks(DAOFactoryService.service().getBookDAO().all());
-        return b;
+        return new MyBooks(new ArrayList<>(DAOFactoryService.service().getBookDAO().all()));
     }
 
     @Override
