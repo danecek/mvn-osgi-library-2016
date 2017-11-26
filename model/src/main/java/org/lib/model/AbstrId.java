@@ -9,13 +9,6 @@ import java.io.Serializable;
 
 public class AbstrId<T extends AbstrId> implements Comparable<T>, Serializable {
 
-    /**
-     * @param id the id to set
-     */
-    public void setId(int id) {
-        this.id = id;
-    }
-
     private int id;
 
     public AbstrId() {
@@ -23,9 +16,6 @@ public class AbstrId<T extends AbstrId> implements Comparable<T>, Serializable {
 
     public AbstrId(int id) {
         this.id = id;
-    }
-
-    public AbstrId() {
     }
 
     @Override
@@ -55,16 +45,13 @@ public class AbstrId<T extends AbstrId> implements Comparable<T>, Serializable {
         return id;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
     @Override
     public String toString() {
         return Integer.toString(getId());
-    }
-
-    /**
-     * @param id the id to set
-     */
-    public void setId(int id) {
-        this.id = id;
     }
 
 }
