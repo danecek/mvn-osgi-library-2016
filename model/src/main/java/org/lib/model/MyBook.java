@@ -6,8 +6,13 @@
 package org.lib.model;
 
 import java.io.Serializable;
+import javax.xml.bind.annotation.XmlRootElement;
 
+@XmlRootElement
 public class MyBook implements Serializable {
+
+    public MyBook() {
+    }
 
     private BookId bookId;
     private String title;

@@ -7,7 +7,7 @@ public class BookId extends AbstrId<BookId> {
 
     public BookId() {
     }
-
+    
     public BookId(Integer id) {
         super(id);
     }
