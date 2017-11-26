@@ -18,9 +18,6 @@ public class MyBook implements Serializable {
     private String title;
     private String author;
 
-    public MyBook() {
-    }
-
     public MyBook(String title, String author) {
         this.title = title;
         this.author = author;
