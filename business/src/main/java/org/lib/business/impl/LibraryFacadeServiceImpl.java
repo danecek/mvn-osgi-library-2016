@@ -10,6 +10,7 @@ import org.lib.business.LibraryFacadeService;
 import org.lib.integration.DAOFactoryService;
 import org.lib.model.BookId;
 import org.lib.model.MyBook;
+import org.lib.model.MyBooks;
 import org.lib.utils.LibException;
 
 /**
@@ -24,8 +25,9 @@ public class LibraryFacadeServiceImpl extends LibraryFacadeService {
     }
 
     @Override
-    public Collection<MyBook> allBook() throws LibException {
-        return DAOFactoryService.service().getBookDAO().all();
+    public MyBooks allBook() throws LibException {
+        MyBooks b = new MyBooks(DAOFactoryService.service().getBookDAO().all());
+        return b;
     }
 
     @Override

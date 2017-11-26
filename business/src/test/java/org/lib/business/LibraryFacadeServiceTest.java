@@ -5,26 +5,28 @@
  */
 package org.lib.business;
 
-import java.util.Collection;
+import junit.framework.TestCase;
+import static org.junit.Assert.assertTrue;
 import org.junit.Test;
-import static org.junit.Assert.*;
 import org.lib.model.MyBook;
+import org.lib.utils.LibException;
 
 /**
  *
  * @author danecek
  */
 public class LibraryFacadeServiceTest {
-    
+
     public LibraryFacadeServiceTest() {
     }
 
-    @org.junit.Test
-    public void testService() {
-//        LibraryFacadeService facade = LibraryFacadeService.service();
-//        Book maj = new Book("Maj", "Macha");
-//        facade.createBook(maj);
-//        assertTrue(facade.allBook().size() == 1);
+    @Test
+    public void testService() throws LibException {
+        LibraryFacadeService facade = LibraryFacadeService.service();
+        TestCase.assertNotNull(facade);
+        MyBook maj = new MyBook("Maj", "Macha");
+      // facade.createBook(maj);
+//        assertTrue(facade.allBook().getBooks().size() == 1);
     }
-    
+
 }

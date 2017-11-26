@@ -12,7 +12,6 @@
 
     <name>connection 2016</name>
 
-
     <dependencies>
         <dependency>
             <groupId>org.osgi</groupId>

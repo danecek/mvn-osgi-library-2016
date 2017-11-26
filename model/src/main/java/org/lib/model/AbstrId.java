@@ -7,20 +7,20 @@ package org.lib.model;
 
 import java.io.Serializable;
 
-/**
- *
- * @author danecek
- */
 public class AbstrId<T extends AbstrId> implements Comparable<T>, Serializable {
 
-    private final int id;
+    private int id;
 
     public AbstrId(int id) {
         this.id = id;
     }
 
+    public AbstrId() {
+    }
+
+    @Override
     public int compareTo(T o) {
-        return id - o.getId();
+        return getId() - o.getId();
     }
 
     @Override
@@ -37,20 +37,24 @@ public class AbstrId<T extends AbstrId> implements Comparable<T>, Serializable {
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 59 * hash + this.id;
+        hash = 59 * hash + this.getId();
         return hash;
     }
 
-    /**
-     * @return the id
-     */
     public int getId() {
         return id;
     }
 
     @Override
     public String toString() {
-        return Integer.toString(id);
+        return Integer.toString(getId());
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(int id) {
+        this.id = id;
     }
 
 }

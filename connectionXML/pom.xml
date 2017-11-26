@@ -7,17 +7,30 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>model</artifactId>
+    <artifactId>connectionXML</artifactId>
     <packaging>bundle</packaging>
+
+    <name>connectionXML 2016</name>
 
     <dependencies>
         <dependency>
             <groupId>org.osgi</groupId>
             <artifactId>org.osgi.core</artifactId>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>utils</artifactId>
+            <artifactId>richclient</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>protocol</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>connection</artifactId>
             <version>${project.version}</version>
         </dependency>
     </dependencies>
@@ -30,13 +43,13 @@
                 <extensions>true</extensions>
                 <configuration>
                     <instructions>
-                        <Bundle-Activator>org.lib.model.Activator</Bundle-Activator>
-                        <Export-Package >org.lib.model</Export-Package>
-                        <Private-Package>org.lib.model.*</Private-Package>
+                        <Bundle-Activator>org.lib.connectionxml.Activator</Bundle-Activator>
+                        <Export-Package ></Export-Package>
+                        <Private-Package>org.lib.connectionxml.*</Private-Package>
                     </instructions>
                 </configuration>
             </plugin>
         </plugins>
     </build>
-    <name>model 2016</name>
+
 </project>

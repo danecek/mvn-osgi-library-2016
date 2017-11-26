@@ -1,73 +1,37 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package org.lib.connection;
 
+import org.lib.connection.impl.LibConnectionDefault;
 import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.net.Socket;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import org.lib.model.MyBook;
 import org.lib.protocol.Command;
 import org.lib.utils.LibException;
-import org.lib.utils.Messages;
+import org.osgi.util.tracker.ServiceTracker;
 
-/**
- *
- * @author danecek
- */
-public class LibConnection {
-    
-    public static final LibConnection inst = new LibConnection();
-    public static final Class[] x = {MyBook.class};
-    private Socket s;
-    private ObjectOutputStream oos;
-    private ObjectInputStream ois;
-    
-    public void connect(String host, int port) throws IOException {
-        s = new Socket(host, port);
-        s.setSoTimeout(1000);
-        ois = new ObjectInputStream(s.getInputStream());
-        oos = new ObjectOutputStream(s.getOutputStream());
+public abstract class LibConnection {
+
+    public static void setSt(ServiceTracker<LibConnection, LibConnection> aSt) {
+        st = aSt;
     }
-    
-    public boolean isConnected() {
-        return s != null;
-    }
-    
-    public void disconnect() throws IOException {
-        try (Socket s = this.s;
-                ObjectOutputStream oos = this.oos;
-                ObjectInputStream ois = this.ois) {
-        }
-        s = null;
-    }
-    
-    public <T> T send(Command com) throws LibException {
-        if (!isConnected()) {
-            throw new LibException(Messages.Not_connected.createMessage());
-        }
-        try {
-            LOG.info(com.toString());
-            oos.writeObject(com);
-            oos.flush();
-            T res = (T) ois.readObject();
-            if (res instanceof LibException) {
-                throw (LibException) res;
+
+    private static LibConnection service;
+
+    private static ServiceTracker<LibConnection, LibConnection> st;
+
+    public static LibConnection getService() {
+        if (service == null) {
+            service = st.getService();
+            if (service == null) {
+                service = new LibConnectionDefault();
             }
-            return res;
-        } catch (IOException ex) {
-            throw new LibException(ex);
-        } catch (ClassNotFoundException ex) {
-            LOG.log(Level.SEVERE, null, ex);
-            throw new RuntimeException(ex);
         }
-        
+        return service;
     }
-    private static final Logger LOG = Logger.getLogger(LibConnection.class.getName());
-    
+
+    public abstract void connect(String host, int port) throws IOException;
+
+    public abstract boolean isConnected();
+
+    public abstract void disconnect() throws IOException;
+
+    public abstract <T> T send(Command com) throws LibException;
+
 }

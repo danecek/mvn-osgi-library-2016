@@ -5,12 +5,9 @@
  */
 package org.lib.protocol;
 
-import java.io.Serializable;
-import org.lib.utils.LibException;
+import javax.xml.bind.annotation.XmlRootElement;
 
-public abstract class Command implements Serializable {
+@XmlRootElement
+public class Ok {
     
-    public static Ok ok = new Ok();
-    
-    public abstract <T> T execute() throws LibException;
 }

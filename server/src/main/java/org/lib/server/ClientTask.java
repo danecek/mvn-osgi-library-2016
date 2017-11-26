@@ -13,7 +13,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.lib.model.MyBook;
 import org.lib.protocol.Command;
-import org.lib.protocol.DeleteBook;
+import org.lib.protocol.DeleteBookCommand;
 import org.lib.utils.LibException;
 
 /**
@@ -24,7 +24,7 @@ public class ClientTask implements Runnable {
 
     ObjectInputStream ois;
     ObjectOutputStream oos;
-    static Class[] x = {MyBook.class, DeleteBook.class};
+    static Class[] x = {MyBook.class, DeleteBookCommand.class};
 
     public ClientTask(Socket s) throws IOException {
         oos = new ObjectOutputStream(s.getOutputStream());
